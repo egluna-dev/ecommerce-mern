@@ -1,0 +1,33 @@
+{
+  "name": "ecommerce-mern",
+  "version": "1.0.0",
+  "description": "MERN Shoppin Cart App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egluna-dev/ecommerce-mern.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "shopping",
+    "react",
+    "paypal",
+    "money",
+    "tech",
+    "react",
+    "web",
+    "app"
+  ],
+  "author": "E. Giovanni Luna",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/egluna-dev/ecommerce-mern/issues"
+  },
+  "homepage": "https://github.com/egluna-dev/ecommerce-mern#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
