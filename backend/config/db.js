@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-mongoURI = process.env.MONGO_URI
+const mongoURI = process.env.MONGO_URI
 console.log(mongoURI)
 
 const connectDB = async () => {
@@ -8,12 +8,11 @@ const connectDB = async () => {
         const connection = await mongoose.connect(process.env.MONGO_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
-            useCreateIndex: true
         })
 
-        console.log(`MongoDB Connected: ${connection.connection.host}`)
+        console.log(`MongoDB Connected: ${connection.connection.host}`.cyan.underline)
     } catch (error) {
-        console.error(`Error: ${error.message}`)
+        console.error(`Error: ${error.message}`.red.underline.bold)
         process.exit(1)
     }
 }
