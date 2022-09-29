@@ -1,13 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import { composeWithDevtools } from 'redux-devtools-extension';
+import { productListReducer } from './reducers/productReducers';
 
-const reducer = {}
+const reducer = {
+    productList: productListReducer
+}
 
-const initialState = {}
+// const initialState = {}
 
 const middleware = [thunk]
 
-const store = configureStore({})
+const store = configureStore({
+    reducer,
+    middleware: middleware,
+    devTools: process.env.NODE_ENV !== 'production',
+})
 
 export default store
