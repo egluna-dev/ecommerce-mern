@@ -8,19 +8,19 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 const ProductScreen = ({ history, match }) => {
-    const [qty, setQty] = useState(1)
+    const [qty, setQty] = useState(1);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const productDetails = useSelector(state => state.productDetails)
-    const { loading, error, product } = productDetails
+    const productDetails = useSelector(state => state.productDetails);
+    const { loading, error, product } = productDetails;
 
     useEffect(() => {
-        dispatch(listProductDetails(match.params.id))
+        dispatch(listProductDetails(match.params.id));
     }, [dispatch, match.params.id]);
 
     const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?qty=${qty}`)
+        history.push(`/cart/${match.params.id}?qty=${qty}`);
     }
 
     return (
@@ -94,7 +94,6 @@ const ProductScreen = ({ history, match }) => {
                     </Col>
                 </Row>
             )}
-            
         </>
     )
 }
