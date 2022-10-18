@@ -47,7 +47,7 @@ const getOrderById = asyncHandler(async (req, res) => {
     if(order) {
         res.json(order);
     } else {
-        res.status(404);
+        res.status(401);
         throw new Error('Order not found');
     }
 });
