@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
+import { useEffect, useEFfect } from 'react';
+import { Button, Row, Col, ListGroup, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { createOrder } from '../actions/orderActions';
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen = ({ history }) => {
     const cart = useSelector(state => state.cart);
 
     const addDecimals = num => (Math.round(num * 100) / 100).toFixed(2)
@@ -21,8 +22,25 @@ const PlaceOrderScreen = () => {
 
     const dispatch = useDispatch();
 
+    const orderCreate = useSelector(state => state.orderCreate);
+    const { order, success, error }  = orderCreate;
+
+    useEffect(() => {
+        if(success) {
+            history.push(`/order/${order._id}`)
+        }
+    })
+
     const placeOrderHandler = () => {
-        console.log('order');
+        dispatch(createOrder({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxPrice: cart.taxPrice,
+            totalPrice: cart.totalPrice
+        }))
     }
 
   return (
@@ -105,6 +123,11 @@ const PlaceOrderScreen = () => {
                             <Col>${cart.totalPrice}</Col>
                         </Row>
                     </ListGroup.Item>
+
+                    <ListGroup.Item>
+
+                    </ListGroup.Item>
+                        {error && <Message variant='danger'>{error}</Message> }
                     <ListGroup.Item>
                         <Button type='button' className='btn-block' disabled={cart.cartItems === 0} onClick={placeOrderHandler}>Place Order</Button>
                     </ListGroup.Item>
